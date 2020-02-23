@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <style type="text/css">
+      h2{
+        font-family: monospace;
+        font-weight: bold;
+        color : grey;
+        font-size: 30px;
+        margin-left: 620px;
+
+      }
+      .calc_layout
+      {
+        margin-left: 560px;
+        width : 250px;
+        height:auto;
+        border : 1px solid lightgreen;
+        padding : 40px 30px 40px 30px;
+        background:#181818;
+        border-radius : 10px;
+      }
+      input
+      {
+        height :35px;
+        width : 240px;
+        font-weight : bold;
+        text-align : right;
+        background:darkgrey;
+        border : 2px solid lightgreen;
+        border-radius:6px;
+        color : black;
+        font-family:monospace;
+        padding-right: 15px;
+        font-size:20px;
+      }
+      button
+      {
+        height : 40px;
+        width : 55px;
+        font-weight : bold;
+        font-family : sans-serif;
+        background : inherit;
+        color:green;
+        font-size:16px;
+        border-radius:10px;
+        border : 1px solid grey;
+      }
+      .button_new
+      {
+        height : 40px;
+        width : 100px;
+        font-weight : bold;
+        font-family : sans-serif;
+        background : inherit;
+        color:green;
+        font-size:16px;
+        border-radius:10px;
+        border : 1px solid grey;
+      }
+      .pad
+      {
+        padding : 20px 20px 20px 0px;
+        height : 270px;
+        width : 250px;
+      }
+      .numberpad
+      {
+        width:200px;
+      }
+
+      .vertical{
+        height : 210px;
+        width : 2px;
+        background-color : lightgreen;
+        margin-left : 180px;
+        margin-top : -224px;
+      }
+      .operationpad
+      {
+        height : 220px;
+        margin-left : 185px;
+        margin-top : -215px;
+      }
+
+    </style>
+    <script type="text/javascript">
+      function calc(val)
+      {
+        var exp = document.getElementById("expression");
+        try {
+            if( (parseInt(val) >=0 && parseInt(val)<=9 )||
+              (val == "/" || val == "*" || val == "-" || val == "+"
+              || val =="(" || val == ")" || val ==".")
+            )
+            if(exp.value == "Invalid Expression!")
+              exp.value = ""+val;
+            else
+              exp.value += val;
+            else if (exp.value !="" && val =="on")
+              exp.value = eval(exp.value);
+            else if(exp.value == "" && val == "on")
+              exp.value = "Invalid Expression!";
+            else if( val=="clear" && exp.value == "Invalid Expression!" || val=="clearall")
+              exp.value = "";
+            else if(val!="")
+              exp.value = exp.value.slice(0,exp.value.length-1 );
+          } catch (err) {
+            exp.value = "Invalid Expression!";
+        }
+      }
+    </script>
+  </head>
+  <body bgcolor="black">
+
+    <h2>
+      Calculator
+    </h2>
+    <div class="calc_layout">
+      <input type="text" placeholder="0" id="expression" readonly >
+      <br>
+      <br>
+      <div class="pad">
+        <table style="border-spacing :7px 0px;">
+          <tr>
+            <td>
+              <button type="button" name="braces1" onclick="calc('(');">(</button>
+            </td>
+            <td>
+              <button type="button" name="braces2" onclick="calc(')');">)</button>
+            </td>
+            <td colspan=2>
+              <button class= "button_new"type="button" name="clearall" onclick="calc('clearall');">Clear All</button>
+            </td>
+          </tr>
+        </table>
+        <div class="numberpad">
+          <table cellspacing=5 style="border-spacing : 0px 15px;">
+            <tr>
+              <td>
+                <button type="button" name="b7" onclick="calc('7');">7</button>
+                <button type="button" name="b8" onclick="calc('8');" >8</button>
+                <button type="button" name="b9" onclick="calc('9');">9</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <button type="button" name="b4" onclick="calc('4');">4</button>
+                <button type="button" name="b5" onclick="calc('5');">5</button>
+                <button type="button" name="b6" onclick="calc('6');">6</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="button" name="b1" onclick="calc('1');">1</button>
+                <button type="button" name="b2" onclick="calc('2');">2</button>
+                <button type="button" name="b3" onclick="calc('3');">3</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="button" name="b0" onclick="calc('0');">0</button>
+                <button type="button" name="b1" onclick="calc('.');">.</button>
+                <button type="button" name="b1"  onclick="calc('on');">=</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="vertical"></div>
+        <div class="operationpad">
+          <table>
+            <tr>
+              <td>
+                  <button type="button" name="clear" onclick="calc('clear');">Clear</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  <button type="button" name="divide" onclick="calc('/');">/</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button type="button" name="mult" onclick="calc('*');">*</button>
+              </td>
+            </tr>
+            <tr>
+                  <td>
+                    <button type="button" name="sub" onclick="calc('-');">-</button>
+                  </td>
+            </tr>
+            <tr>
+                  <td>
+                    <button type="button" name="add" onclick="calc('+');">+</button>
+                  </td>
+            </tr
+
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
